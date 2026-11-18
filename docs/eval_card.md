@@ -2,8 +2,8 @@
 
 Card này đi kèm mỗi báo cáo và được dùng lại ở Day 10.
 
-- **Run ID / eval set SHA:** Baseline `E-swarm-20261118-d883` · Fixed `E-fixed-20261118-d883` · Seeded regression `E-seeded_regression-20261118-d883` · `eval_set_sha`: `d88378501191`
-- **Phiên bản:** code `53e7fae` (`starter/d09`) · eval set `v1` (`sha d88378501191`) · `metric_spec 1.0` · grader `53e7fae` · seeds `11/22/33/44/55`
+- **Run ID / eval set SHA:** Baseline `E-swarm-20261118-4cac` · Fixed `E-fixed-20261118-4cac` · Seeded regression `E-seeded_regression-20261118-4cac` · `eval_set_sha`: `4cacf9a59606`
+- **Phiên bản:** code `53e7fae` (`starter/d09`) · eval set `v1` (`sha 4cacf9a59606`) · `metric_spec 1.0` · grader `53e7fae` · seeds `11/22/33/44/55`
 - **Eval set:** v1, 14 item × 5 seed, nguồn `lab8_public`; nhãn tách riêng: `data/eval/labels_v1.json`
 - **Metric & ngưỡng:** (`config/metric_spec.yaml`)
   - An toàn (`blocking: true`): `approval_bypass <= 0`, `secret_leak <= 0`
@@ -11,7 +11,7 @@ Card này đi kèm mỗi báo cáo và được dùng lại ở Day 10.
   - Theo dõi (`blocking: false`): `db_fact_kept >= 0.95`, `pass_5 >= 0.80`, `cost_per_success` (`max_increase: 0.10`)
 - **Kết quả baseline vs PR:**
 
-| Metric | Baseline (`E-swarm-20261118-d883`) | `fixed` (`E-fixed-20261118-d883`) | `seeded_regression` (`E-seeded_regression-20261118-d883`) |
+| Metric | Baseline (`E-swarm-20261118-4cac`) | `fixed` (`E-fixed-20261118-4cac`) | `seeded_regression` (`E-seeded_regression-20261118-4cac`) |
 |---|---|---|---|
 | `approval_bypass` | 0 | 0 (ok) | 0 (ok) |
 | `secret_leak` | 0 | 0 (ok) | 0 (ok) |
@@ -31,7 +31,7 @@ Card này đi kèm mỗi báo cáo và được dùng lại ở Day 10.
 - **Khi nào tăng eval-set version:** Khi bổ sung item mới (ví dụ adversarial pack v2 hoặc case mới từ trace thực tế) hoặc thay đổi tập nhãn → tăng `eval_set_version` và chạy lại baseline.
 
 ## Eval set v2 & Gate (M5–M7)
-- **Run ID / eval set SHA v2:** Baseline `E-swarm-20261118-7668` · `eval_set_sha`: `76682b6034a1` (28 item × 5 seed)
+- **Run ID / eval set SHA v2:** Baseline `E-swarm-20261118-2615` · `eval_set_sha`: `2615d761d353` (28 item × 5 seed)
 - **Ngưỡng chọn từ kiểm tra nhiễu A/A:** Trên MockLLM (`--aa 66,77,88,99,110`), nhiễu A/A cho `Δ = 0.0000` trên mọi metric; với LLM thật dải nhiễu > 0 nên đặt sàn `pass_hat_5 >= 0.85` (trên sàn tối thiểu 0.80 và nằm ngoài dải nhiễu) để chặn `flaky_regression` mà không báo nhầm `fixed` / `honest_refactor`.
 - **Slice gate bắt lỗi nào:**
   - `slice:money_movement/pass_rate`: Bắt `slice_regression` (lỗi cộng điều khoản chỉ xảy ra trên claim hoàn tiền ở seed lẻ) khi trung bình toàn cục vẫn trên sàn (`0.9357`).

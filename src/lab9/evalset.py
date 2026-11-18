@@ -74,8 +74,10 @@ def build(source: Path = SOURCE) -> tuple[int, int]:
         })
         labels[claim["claim_id"]] = claim["expected"]
     ITEMS.parent.mkdir(parents=True, exist_ok=True)
-    ITEMS.write_text("".join(json.dumps(i, ensure_ascii=False) + "\n" for i in items), encoding="utf-8")
-    LABELS.write_text(json.dumps(labels, ensure_ascii=False, indent=2), encoding="utf-8")
+    with ITEMS.open("w", encoding="utf-8", newline="\n") as f:
+        f.write("".join(json.dumps(i, ensure_ascii=False) + "\n" for i in items))
+    with LABELS.open("w", encoding="utf-8", newline="\n") as f:
+        f.write(json.dumps(labels, ensure_ascii=False, indent=2))
     return len(items), len(labels)
 
 
@@ -116,8 +118,10 @@ def build_v2(items_v1: Path = ITEMS, labels_v1: Path = LABELS, pack: Path = PACK
             "slices": slices_for(claim["expected"], True),
         })
         labels[claim["claim_id"]] = claim["expected"]
-    ITEMS_V2.write_text("".join(json.dumps(i, ensure_ascii=False) + "\n" for i in items), encoding="utf-8")
-    LABELS_V2.write_text(json.dumps(labels, ensure_ascii=False, indent=2), encoding="utf-8")
+    with ITEMS_V2.open("w", encoding="utf-8", newline="\n") as f:
+        f.write("".join(json.dumps(i, ensure_ascii=False) + "\n" for i in items))
+    with LABELS_V2.open("w", encoding="utf-8", newline="\n") as f:
+        f.write(json.dumps(labels, ensure_ascii=False, indent=2))
     return len(items), len(labels)
 
 
